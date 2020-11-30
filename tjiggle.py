@@ -605,7 +605,8 @@ class Jiggle(c4d.plugins.TagData):
         elif data.upVector == VECTOR_ZMINUS:
             up = originMatrix.MulV(c4d.Vector(0, 0, -1.0))
 
-        side = up.Cross(aim)
+        side = up.Cross(aim).GetNormalized()
+        up = side.Cross(aim).GetNormalized()
 
         # calculate squash strech
         if data.squashStretchEnable:
